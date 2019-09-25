@@ -1,0 +1,16 @@
+## This service is manged via puppet
+##
+[Unit]
+Description=Apache Web Server
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+RemainAfterExit=true
+ExecStart=/bin/bash -x /opt/apache/bin/apachectl start 
+ExecStop=/opt/apache/bin/apachectl graceful-stop
+ExecReload=/usr/sbin/apachectl graceful
+PrivateTmp=true
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
