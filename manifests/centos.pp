@@ -1,3 +1,4 @@
+# tnings we need on centos
 class apache::centos {
   file { '/etc/systemd/system/apache.service':
     ensure => file,
@@ -12,10 +13,10 @@ class apache::centos {
     subscribe   => File['/etc/systemd/system/apache.service'],
     refreshonly => true,
   }
+
   service { 'apache must be running':
-    name     => 'apache',
     ensure   => 'running',
-  
+    name     => 'apache',
   }
 
 }
